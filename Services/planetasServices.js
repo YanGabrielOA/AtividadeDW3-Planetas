@@ -72,9 +72,9 @@ class planetaService {
         gravidade,
         temperatura,
         qntLuas,
-      });
+      }); 
     } catch (error) {
-      console.log(error);
+      console.log(error); 
     }
   }
 

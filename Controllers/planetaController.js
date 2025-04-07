@@ -65,7 +65,7 @@ const updPlaneta = async(req,res)=>{
         if(ObjectId.isValid(req.params.id)){
             const id = req.params.id
             const {nome,tipo,descricao,raio,densidade,gravidade,temperatura,qntLuas} = req.body
-            await planetasServices.update(nome,tipo,descricao,raio,densidade,gravidade,temperatura,qntLuas)
+            await planetasServices.update(id,nome,tipo,descricao,raio,densidade,gravidade,temperatura,qntLuas)
             res.sendStatus(200)
         }else{
             res.sendStatus(400)
