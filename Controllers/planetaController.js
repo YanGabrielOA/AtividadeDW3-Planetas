@@ -43,37 +43,55 @@ const cadPlaneta = async (req, res) => {
 
 //FUNCAO PARA DELETAR PLANETAS
 
-const delPlaneta = async (req,res)=>{
-    try{    
-        if(ObjectId.isValid(req.params.id)){
-        const id  = req.params.id
-        await planetasServices.delete(id)
-        res.sendStatus(204)
-        }else{
-            res.sendStatus(400);
-        }
-    }catch(error){
-        console.log(error)
-        res.status(500).json({ error: "Erro interno do servidor" });
+const delPlaneta = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      await planetasServices.delete(id);
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(400);
     }
-}
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
 
 //FUNCAO PARA ATUALIZAR PLANETAS
 
-const updPlaneta = async(req,res)=>{
-    try{
-        if(ObjectId.isValid(req.params.id)){
-            const id = req.params.id
-            const {nome,tipo,descricao,raio,densidade,gravidade,temperatura,qntLuas} = req.body
-            await planetasServices.update(id,nome,tipo,descricao,raio,densidade,gravidade,temperatura,qntLuas)
-            res.sendStatus(200)
-        }else{
-            res.sendStatus(400)
-        }
-    }catch(error){
-        console.log(error)
-        res.status(500).json({error:"ERRO INTERNO NO SERVIDOR"})
+const updPlaneta = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const {
+        nome,
+        tipo,
+        descricao,
+        raio,
+        densidade,
+        gravidade,
+        temperatura,
+        qntLuas,
+      } = req.body;
+      await planetasServices.update(
+        id,
+        nome,
+        tipo,
+        descricao,
+        raio,
+        densidade,
+        gravidade,
+        temperatura,
+        qntLuas
+      );
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(400);
     }
-}   
-export default {cadPlaneta,updPlaneta,delPlaneta,getAllPlanetas}
-
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "ERRO INTERNO NO SERVIDOR" });
+  }
+};
+export default { cadPlaneta, updPlaneta, delPlaneta, getAllPlanetas };
